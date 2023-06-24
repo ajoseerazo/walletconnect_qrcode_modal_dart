@@ -142,10 +142,10 @@ class WalletConnectQrCodeModal {
                   ),
                   context: context,
                   builder: (context) => ModalMainPage(
-                    uri: uri,
-                    walletCallback: (wallet) => _wallet = wallet,
-                    modalBuilder: _modalBuilder,
-                  ),
+                        uri: uri,
+                        walletCallback: (wallet) => _wallet = wallet,
+                        modalBuilder: _modalBuilder,
+                      ));
 
               isDismissed = true;
               if (!sessionCreated && !isError) {
