@@ -122,16 +122,30 @@ class WalletConnectQrCodeModal {
             chainId: chainId,
             onDisplayUri: (uri) async {
               _uri = uri;
-              await showDialog(
-                context: context,
-                useSafeArea: true,
-                barrierDismissible: true,
-                builder: (context) => ModalMainPage(
-                  uri: uri,
-                  walletCallback: (wallet) => _wallet = wallet,
-                  modalBuilder: _modalBuilder,
-                ),
-              );
+              // await showDialog(
+              //   context: context,
+              //   useSafeArea: true,
+              //   barrierDismissible: true,
+              //   builder: (context) => ModalMainPage(
+              //     uri: uri,
+              //     walletCallback: (wallet) => _wallet = wallet,
+              //     modalBuilder: _modalBuilder,
+              //   ),
+              // );
+
+              await showModalBottomSheet<void>(
+                  backgroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25.0),
+                        topRight: Radius.circular(25.0)),
+                  ),
+                  context: context,
+                  builder: (context) => ModalMainPage(
+                    uri: uri,
+                    walletCallback: (wallet) => _wallet = wallet,
+                    modalBuilder: _modalBuilder,
+                  ),
 
               isDismissed = true;
               if (!sessionCreated && !isError) {
