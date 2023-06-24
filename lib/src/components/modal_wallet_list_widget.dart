@@ -23,7 +23,7 @@ class ModalWalletListWidget extends StatefulWidget {
     required this.url,
     required this.wallets,
     this.walletCallback,
-    this.title = 'Choose your preferred wallet',
+    this.title = 'Escoge tu wallet preferida',
     this.titlePadding,
     this.titleTextStyle,
     this.titleTextAlign,
