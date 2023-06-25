@@ -18,9 +18,7 @@ dependencies:
   json_annotation: ^4.8.1
   qr_flutter: ^4.0.0
   url_launcher: ^6.1.11
-  walletconnect_dart: 
-    git:
-      url: https://github.com/andromeda911/walletconnect-dart-sdk
+  walletconnect_dart: ^0.0.11
 
 dev_dependencies:
   build_runner: ^2.4.4
