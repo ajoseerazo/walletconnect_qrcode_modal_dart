@@ -292,7 +292,7 @@ class _ModalContent extends StatelessWidget {
                 }
               } else {
                 if (onOpenWalletSuccess != null) {
-                  onOpenWalletFailure!.call(wallet);
+                  onOpenWalletSuccess!.call(wallet);
                 }
               }
             },
@@ -317,7 +317,7 @@ class _ModalContent extends StatelessWidget {
                 }
               } else {
                 if (onOpenWalletSuccess != null) {
-                  onOpenWalletFailure!.call(wallet);
+                  onOpenWalletSuccess!.call(wallet);
                 }
               }
             },
