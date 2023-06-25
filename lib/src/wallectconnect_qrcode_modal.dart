@@ -146,7 +146,10 @@ class WalletConnectQrCodeModal {
                       heightFactor: 0.9,
                       child: ModalMainPage(
                         uri: uri,
-                        walletCallback: (wallet) => _wallet = wallet,
+                        walletCallback: (wallet) {
+                          debugPrint("Wallet $wallet");
+                          _wallet = wallet;
+                        },
                         modalBuilder: _modalBuilder,
                       )));
 
