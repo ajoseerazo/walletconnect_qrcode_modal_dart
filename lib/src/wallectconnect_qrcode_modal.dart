@@ -142,11 +142,13 @@ class WalletConnectQrCodeModal {
                         topRight: Radius.circular(25.0)),
                   ),
                   context: context,
-                  builder: (context) => ModalMainPage(
+                  builder: (context) => FractionallySizedBox(
+                      heightFactor: 0.8,
+                      child: ModalMainPage(
                         uri: uri,
                         walletCallback: (wallet) => _wallet = wallet,
                         modalBuilder: _modalBuilder,
-                      ));
+                      )));
 
               isDismissed = true;
               if (!sessionCreated && !isError) {
