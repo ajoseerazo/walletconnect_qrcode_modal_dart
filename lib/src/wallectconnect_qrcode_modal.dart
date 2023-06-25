@@ -135,6 +135,7 @@ class WalletConnectQrCodeModal {
 
               await showModalBottomSheet<void>(
                   backgroundColor: Colors.white,
+                  isScrollControlled: true,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(25.0),
