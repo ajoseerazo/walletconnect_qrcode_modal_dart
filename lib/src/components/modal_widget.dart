@@ -220,6 +220,7 @@ class _ModalContent extends StatelessWidget {
     this.qrCodeBuilder,
     this.platformOverrides,
     this.onOpenWalletFailure,
+    this.chain,
     Key? key,
   }) : super(key: key);
 
@@ -232,6 +233,7 @@ class _ModalContent extends StatelessWidget {
   final ModalWalletPlatformOverrides? platformOverrides;
   final bool shouldVerifyNativeLinks;
   final Function(Wallet)? onOpenWalletFailure;
+  final String? chain;
 
   @override
   Widget build(BuildContext context) {
@@ -372,7 +374,10 @@ class _ModalContent extends StatelessWidget {
         for (final wallet in wallets) {
           try {
             if (await shouldShow(wallet)) {
-              filter.add(wallet);
+              if (this.chain == null ||
+                  (this.chain != null && wallet.chains.contains(this.chain))) {
+                filter.add(wallet);
+              }
             }
           } catch (e) {
             debugPrint('Some links invalid for ${wallet.name}');
