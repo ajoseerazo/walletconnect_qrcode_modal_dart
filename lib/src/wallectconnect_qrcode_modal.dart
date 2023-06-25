@@ -143,7 +143,7 @@ class WalletConnectQrCodeModal {
                   ),
                   context: context,
                   builder: (context) => FractionallySizedBox(
-                      heightFactor: 0.8,
+                      heightFactor: 0.9,
                       child: ModalMainPage(
                         uri: uri,
                         walletCallback: (wallet) => _wallet = wallet,
