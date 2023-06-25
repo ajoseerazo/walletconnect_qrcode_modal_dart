@@ -65,6 +65,7 @@ class ModalWidget extends StatefulWidget {
     this.platformOverrides,
     this.shouldVerifyNativeLinks = false,
     this.onOpenWalletFailure,
+    this.chain,
     Key? key,
   }) : super(key: key);
 
@@ -113,6 +114,8 @@ class ModalWidget extends StatefulWidget {
   /// Parameter is the failed Wallet object.
   final Function(Wallet)? onOpenWalletFailure;
 
+  final String? chain;
+
   @override
   State<ModalWidget> createState() => _ModalWidgetState();
 
@@ -130,6 +133,7 @@ class ModalWidget extends StatefulWidget {
     bool? shouldVerifyNativeLinks,
     Function(Wallet)? onOpenWalletFailure,
     Function(Wallet)? walletCallback,
+    String? chain,
     Key? key,
   }) =>
       ModalWidget(
@@ -148,6 +152,7 @@ class ModalWidget extends StatefulWidget {
         shouldVerifyNativeLinks:
             shouldVerifyNativeLinks ?? this.shouldVerifyNativeLinks,
         onOpenWalletFailure: onOpenWalletFailure ?? this.onOpenWalletFailure,
+        chain: chain,
         key: key ?? this.key,
       );
 }
@@ -197,6 +202,7 @@ class _ModalWidgetState extends State<ModalWidget> {
                       platformOverrides: widget.platformOverrides,
                       shouldVerifyNativeLinks: widget.shouldVerifyNativeLinks,
                       onOpenWalletFailure: widget.onOpenWalletFailure,
+                      chain: widget.chain
                     ),
                   ),
                 ],
