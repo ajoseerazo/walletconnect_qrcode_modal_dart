@@ -147,7 +147,8 @@ class WalletConnectQrCodeModal {
                       child: ModalMainPage(
                         uri: uri,
                         walletCallback: (wallet) {
-                          debugPrint("Wallet $wallet");
+                          print("-------- Wallet --------$wallet");
+                          debugPrint("-------- Wallet --------$wallet");
                           _wallet = wallet;
                         },
                         modalBuilder: _modalBuilder,
