@@ -9,23 +9,24 @@ class Wallet {
   final String? description;
   final String? homepage;
   final List<String> chains;
+  final String? imageUrl;
 
   final WalletAppLinks app;
   final WalletLinks mobile;
   final WalletLinks desktop;
   final WalletMetadata metadata;
 
-  Wallet({
-    required this.id,
-    required this.name,
-    required this.description,
-    required this.homepage,
-    required this.chains,
-    required this.app,
-    required this.mobile,
-    required this.desktop,
-    required this.metadata,
-  });
+  Wallet(
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.homepage,
+      required this.chains,
+      required this.app,
+      required this.mobile,
+      required this.desktop,
+      required this.metadata,
+      required this.imageUrl});
 
   factory Wallet.fromJson(Map<String, dynamic> json) => _$WalletFromJson(json);
   Map<String, dynamic> toJson() => _$WalletToJson(this);

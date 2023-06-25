@@ -7,18 +7,16 @@ part of 'wallet.dart';
 // **************************************************************************
 
 Wallet _$WalletFromJson(Map<String, dynamic> json) => Wallet(
-      id: json['id'] as String,
-      name: json['name'] as String,
-      description: json['description'] as String?,
-      homepage: json['homepage'] as String?,
-      chains:
-          (json['chains'] as List<dynamic>).map((e) => e as String).toList(),
-      app: WalletAppLinks.fromJson(json['app'] as Map<String, dynamic>),
-      mobile: WalletLinks.fromJson(json['mobile'] as Map<String, dynamic>),
-      desktop: WalletLinks.fromJson(json['desktop'] as Map<String, dynamic>),
-      metadata:
-          WalletMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
-    );
+    id: json['id'] as String,
+    name: json['name'] as String,
+    description: json['description'] as String?,
+    homepage: json['homepage'] as String?,
+    chains: (json['chains'] as List<dynamic>).map((e) => e as String).toList(),
+    app: WalletAppLinks.fromJson(json['app'] as Map<String, dynamic>),
+    mobile: WalletLinks.fromJson(json['mobile'] as Map<String, dynamic>),
+    desktop: WalletLinks.fromJson(json['desktop'] as Map<String, dynamic>),
+    metadata: WalletMetadata.fromJson(json['metadata'] as Map<String, dynamic>),
+    imageUrl: json['image_url']['sm']);
 
 Map<String, dynamic> _$WalletToJson(Wallet instance) => <String, dynamic>{
       'id': instance.id,
