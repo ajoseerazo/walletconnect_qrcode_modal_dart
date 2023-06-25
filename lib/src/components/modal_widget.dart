@@ -129,11 +129,12 @@ class ModalWidget extends StatefulWidget {
     ModalWalletPlatformOverrides? platformOverrides,
     bool? shouldVerifyNativeLinks,
     Function(Wallet)? onOpenWalletFailure,
+    Function(Wallet)? walletCallback,
     Key? key,
   }) =>
       ModalWidget(
         uri: uri,
-        walletCallback: walletCallback,
+        walletCallback: walletCallback ?? this.walletCallback,
         width: width ?? this.width,
         height: height ?? this.height,
         cardPadding: cardPadding ?? this.cardPadding,
