@@ -65,6 +65,7 @@ class ModalWidget extends StatefulWidget {
     this.platformOverrides,
     this.shouldVerifyNativeLinks = false,
     this.onOpenWalletFailure,
+    this.onOpenWalletSuccess,
     this.chain,
     Key? key,
   }) : super(key: key);
@@ -114,6 +115,8 @@ class ModalWidget extends StatefulWidget {
   /// Parameter is the failed Wallet object.
   final Function(Wallet)? onOpenWalletFailure;
 
+  final Function(Wallet)? onOpenWalletSuccess;
+
   final String? chain;
 
   @override
@@ -132,13 +135,13 @@ class ModalWidget extends StatefulWidget {
     ModalWalletPlatformOverrides? platformOverrides,
     bool? shouldVerifyNativeLinks,
     Function(Wallet)? onOpenWalletFailure,
-    Function(Wallet)? walletCallback,
+    Function(Wallet)? onOpenWalletSuccess,
     String? chain,
     Key? key,
   }) =>
       ModalWidget(
         uri: uri,
-        walletCallback: walletCallback ?? this.walletCallback,
+        walletCallback: this.walletCallback,
         width: width ?? this.width,
         height: height ?? this.height,
         cardPadding: cardPadding ?? this.cardPadding,
@@ -153,6 +156,7 @@ class ModalWidget extends StatefulWidget {
             shouldVerifyNativeLinks ?? this.shouldVerifyNativeLinks,
         onOpenWalletFailure: onOpenWalletFailure ?? this.onOpenWalletFailure,
         chain: chain,
+        onOpenWalletSuccess: onOpenWalletSuccess ?? this.onOpenWalletSuccess,
         key: key ?? this.key,
       );
 }
@@ -193,17 +197,17 @@ class _ModalWidgetState extends State<ModalWidget> {
                   selectorWidget,
                   Expanded(
                     child: _ModalContent(
-                      groupValue: selectionIndex,
-                      walletCallback: widget.walletCallback,
-                      uri: widget.uri,
-                      walletButtonBuilder: widget.walletButtonBuilder,
-                      walletListBuilder: widget.walletListBuilder,
-                      qrCodeBuilder: widget.qrCodeBuilder,
-                      platformOverrides: widget.platformOverrides,
-                      shouldVerifyNativeLinks: widget.shouldVerifyNativeLinks,
-                      onOpenWalletFailure: widget.onOpenWalletFailure,
-                      chain: widget.chain
-                    ),
+                        groupValue: selectionIndex,
+                        walletCallback: widget.walletCallback,
+                        uri: widget.uri,
+                        walletButtonBuilder: widget.walletButtonBuilder,
+                        walletListBuilder: widget.walletListBuilder,
+                        qrCodeBuilder: widget.qrCodeBuilder,
+                        platformOverrides: widget.platformOverrides,
+                        shouldVerifyNativeLinks: widget.shouldVerifyNativeLinks,
+                        onOpenWalletFailure: widget.onOpenWalletFailure,
+                        onOpenWalletSuccess: widget.onOpenWalletSuccess,
+                        chain: widget.chain),
                   ),
                 ],
               ),
@@ -226,6 +230,7 @@ class _ModalContent extends StatelessWidget {
     this.qrCodeBuilder,
     this.platformOverrides,
     this.onOpenWalletFailure,
+    this.onOpenWalletSuccess,
     this.chain,
     Key? key,
   }) : super(key: key);
@@ -239,6 +244,7 @@ class _ModalContent extends StatelessWidget {
   final ModalWalletPlatformOverrides? platformOverrides;
   final bool shouldVerifyNativeLinks;
   final Function(Wallet)? onOpenWalletFailure;
+  final Function(Wallet)? onOpenWalletSuccess;
   final String? chain;
 
   @override
@@ -284,6 +290,10 @@ class _ModalContent extends StatelessWidget {
                     showLinkError(context, wallet);
                   }
                 }
+              } else {
+                if (onOpenWalletSuccess != null) {
+                  onOpenWalletFailure!.call(wallet);
+                }
               }
             },
           );
@@ -304,6 +314,10 @@ class _ModalContent extends StatelessWidget {
                   if (context.mounted) {
                     showLinkError(context, wallet);
                   }
+                }
+              } else {
+                if (onOpenWalletSuccess != null) {
+                  onOpenWalletFailure!.call(wallet);
                 }
               }
             },
